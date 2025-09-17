@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Storyteller's Quest</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/256/5190/5190594.png">
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+        iframe {
+            display: block; 
+            width: 100%;
+            height: 100%;
+            border: none; 
+        }
+    </style>
+</head>
+<body>
+    <iframe class="responsive-iframe" allow="clipboard-read; clipboard-write"
+        src="https://script.google.com/macros/s/AKfycbw9vN9iYFMBv9qisqyYZCT1g5ND1UIlZBWUQ3K7PZHum6bXKTU3uNCvGJhPVqEzRfDF/exec">
+    </iframe>
+</body>
+</html>
