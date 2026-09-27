@@ -1,31 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Family Itinerary (Days 1–7) - Osaka Basecamp</title>
+<style>
+  :root {
+    --day1-color: #5e2776;
+    --day2-color: #2e7d32;
+    --day3-color: #e65100;
+    --day4-color: #1565c0;
+    --day5-color: #00838f;
+    --day6-color: #c62828;
+    --day7-color: #4527a0;
+    --bg-gray: #f4f6f8;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --text-dark: #222222;
+    --text-muted: #555555;
+  }
 
-    <title>The Storyteller's Quest</title>
-    
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/256/5190/5190594.png">
-    
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; 
-        }
-        iframe {
-            display: block; 
-            width: 100%;
-            height: 100%;
-            border: none; 
-        }
-    </style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-gray);
+    margin: 0;
+    padding: 15px;
+    color: var(--text-dark);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Header & Banner Styles */
+  .hero-banner {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 18px 24px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  .hero-title h1 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-dates {
+    background: #d32f2f;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+  .overview-box {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    min-width: 280px;
+  }
+  .overview-box ul { margin: 0; padding-left: 16px; }
+  .badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Grid of Day Cards */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .day-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .card-header {
+    color: white;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+  }
+
+  /* Section Styling */
+  .split-section {
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .sec-1 {
+    background-color: #fafbfc;
+    border: 1px solid #e1e4e8;
+  }
+  .sec-2 {
+    background-color: #f0f7ff;
+    border: 1px solid #cce3ff;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid;
+  }
+  .sec-1 .section-label { color: #444; border-color: #d1d5da; }
+  .sec-2 .section-label { color: #0056b3; border-color: #b8daff; }
+
+  .sub-heading {
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    margin: 6px 0 3px 0;
+  }
+
+  ul.info-list {
+    margin: 0 0 6px 0;
+    padding-left: 16px;
+  }
+  ul.info-list li { margin-bottom: 3px; }
+
+  /* Timeline styling */
+  .timeline-block {
+    display: flex;
+    margin-bottom: 6px;
+    font-size: 11.5px;
+    gap: 8px;
+  }
+  .time-stamp {
+    font-weight: 700;
+    color: #0b5cab;
+    min-width: 65px;
+    flex-shrink: 0;
+  }
+  .time-desc { flex-grow: 1; }
+
+  /* Direction Links */
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0066cc;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 9px;
+    border-radius: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .nav-btn:hover { background: #004c99; }
+  .nav-btn.walking { background: #2e7d32; }
+  .nav-btn.walking:hover { background: #1b5e20; }
+
+  /* Bottom Extras */
+  .footer-tables {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .info-panel {
+    background: #fff;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  .info-panel h3 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 4px;
+  }
+
+  /* Print specific rules for PDF export */
+  @media print {
+    @page { 
+      size: landscape; 
+      margin: 8mm; 
+    }
+    body { 
+      background: white; 
+      padding: 0; 
+      font-size: 10.5px;
+    }
+    .hero-banner { 
+      box-shadow: none; 
+      border-radius: 0;
+      padding: 10px 14px; 
+    }
+    .days-grid { 
+      gap: 10px; 
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .day-card { 
+      box-shadow: none; 
+      border: 1px solid #ccc;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .nav-btn {
+      color: #004c99 !important;
+      background: transparent !important;
+      border: 1px solid #004c99;
+      padding: 2px 5px;
+      font-weight: bold;
+    }
+    .footer-tables {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
 </head>
 <body>
-    <iframe class="responsive-iframe" allow="clipboard-read; clipboard-write"
-        src="https://script.google.com/macros/s/AKfycbw9vN9iYFMBv9qisqyYZCT1g5ND1UIlZBWUQ3K7PZHum6bXKTU3uNCvGJhPVqEzRfDF/exec">
-    </iframe>
+
+<!-- HERO HEADER -->
+<div class="hero-banner">
+  <div class="hero-top">
+    <div class="hero-title">
+      <h1>🇯🇵 JAPAN FAMILY ITINERARY</h1>
+      <span class="hero-dates">2 – 13 OCTOBER 2026 (DAYS 1–7 OSAKA PORTION)</span>
+    </div>
+    <div class="overview-box">
+      <strong>Trip Overview & Basecamp:</strong>
+      <ul>
+        <li><strong>2–9 Oct:</strong> Airbnb @ 2-chome-4-13 Daikoku, Naniwa Ward, Osaka (7 nights)</li>
+        <li><strong>9–11 Oct:</strong> Hotel near Oishi Park, Kawaguchiko (2 nights)</li>
+        <li><strong>11–13 Oct:</strong> Airbnb near Asakusa Station, Tokyo (2 nights)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="badge-grid">
+    <div class="badge">🚆 EXCELLENT TRAIN ACCESS (Easy to all major spots)</div>
+    <div class="badge">👶 TODDLER FRIENDLY (Parks, play areas, high chairs)</div>
+    <div class="badge">🚶 WALKABLE & CONVENIENT (Most spots within 20–40 min)</div>
+    <div class="badge">🪑 HIGH CHAIR AVAILABLE (At featured family spots)</div>
+  </div>
+</div>
+
+<!-- DAYS 1 TO 7 GRID -->
+<div class="days-grid">
+
+  <!-- ================= DAY 1 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day1-color);">
+      <span>Day 1 • 2 Oct (Fri)</span>
+      <span>Arrive Osaka</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>KIX → Namba:</strong> Nankai Airport Express (45 min, ~¥970)</li>
+          <li><strong>Namba → Daikokucho:</strong> Osaka Metro Midosuji Line (2 min, ~¥190)</li>
+          <li><strong>Walk:</strong> 5 min walk to Daikoku Airbnb</li>
+          <li><em>Total:</em> ~50–55 min, ~¥1,160 (~S$10) per adult</li>
+        </ul>
+        <div class="sub-heading">Plan</div>
+        <ul class="info-list">
+          <li>Check in & unpack</li>
+          <li>Dinner at Sushiro Shikitsuhigashi</li>
+          <li>Bath & bedtime</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">6:00 AM</span>
+          <span class="time-desc">Cab to Changi T2, reach by 6:40 AM.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">8:40 AM</span>
+          <span class="time-desc">Depart on <strong>SQ 620</strong> (T2). Lands at Osaka KIX T1 at <strong>4:10 PM</strong>.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">5:00 PM</span>
+          <span class="time-desc">Buy ICOCA card at 2nd floor concourse of KIX T1.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">6:00 PM</span>
+          <span class="time-desc">
+            Board Nankai Airport Express to Namba & transfer to Midosuji Line to Daikokucho.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Kansai+International+Airport&destination=Daikokucho+Station&travelmode=transit" target="_blank">📍 KIX → Daikokucho Station</a>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Daikokucho+Station&destination=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&travelmode=walking" target="_blank">🚶 Station → Airbnb</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">
+            Dinner at Sushiro (2 Chome-5-5 Shikitsuhigashi). Walk 8 min back to basecamp.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Sushiro+Shikitsuhigashi&travelmode=walking" target="_blank">🚶 Airbnb ↔ Sushiro Shikitsuhigashi</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 2 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day2-color);">
+      <span>Day 2 • 3 Oct (Sat)</span>
+      <span>Harvest Hill</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>1.</strong> Daikokucho → Shin-Imamiya (Midosuji Line, 2 min, ~¥190)</li>
+          <li><strong>2.</strong> Nankai Line → Izumigaoka (30 min, ~¥500)</li>
+          <li><strong>3.</strong> Shuttle bus / Taxi (10–15 min)</li>
+          <li><em>Total:</em> ~50–60 min each way, ~¥690 (~S$6) per adult</li>
+        </ul>
+        <div class="sub-heading">Plan & Tickets</div>
+        <ul class="info-list">
+          <li>Farm animals, feeding & flower gardens</li>
+          <li>Lunch: Harvest Hill Food Court | Nap window</li>
+          <li>Playgrounds & family rides</li>
+          <li>Dinner: Maruya (Okonomiyaki)</li>
+          <li><strong>Tickets:</strong> Harvest Hill: ¥1,500–¥1,800 | Under 2: Free</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Depart Daikokucho → Shin-Imamiya → Izumigaoka (Nankai Senboku line).<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Daikokucho+Station&destination=Izumigaoka+Station&travelmode=transit" target="_blank">📍 Daikokucho → Izumigaoka</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">10:00 AM</span>
+          <span class="time-desc">
+            At Izumigaoka South Exit, look for <strong>Platform 6 (orange text in Japanese)</strong> for the shuttle bus to Harvest Hill.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Izumigaoka+Station&destination=Sakai+Green+Museum+Harvest+Hill&travelmode=transit" target="_blank">🚌 Izumigaoka Bus → Harvest Hill</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">4:00 PM</span>
+          <span class="time-desc">Catch shuttle bus back to Izumigaoka → Train to Daikokucho.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">6:00 PM</span>
+          <span class="time-desc">
+            Dinner at Maruya (お好み焼き まるや). 13 min walk back to Airbnb at 7 PM.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Maruya+Daikokucho&travelmode=walking" target="_blank">🚶 Airbnb ↔ Maruya Okonomiyaki</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 3 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day3-color);">
+      <span>Day 3 • 4 Oct (Sun)</span>
+      <span>Tennoji Zoo</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>Daikokucho → Tennoji:</strong> Osaka Metro Midosuji Line (5 min, ~¥190 / ~S$2)</li>
+        </ul>
+        <div class="sub-heading">Plan & Tickets</div>
+        <ul class="info-list">
+          <li>Tennoji Zoo exploration</li>
+          <li>Lunch: Tennoji Zoo Café | Nap window</li>
+          <li>Tenshiba lawn & playground</li>
+          <li>Dinner: Sushiro Abeno (Alt: Royal Host Abeno)</li>
+          <li><strong>Tickets:</strong> Tennoji Zoo: ¥500 | Under 2: Free</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Take Midosuji line from Daikokucho directly to Tennoji.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Daikokucho+Station&destination=Tennoji+Zoo&travelmode=transit" target="_blank">📍 Daikokucho → Tennoji Zoo</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">12:00 PM</span>
+          <span class="time-desc">Lunch at Tennoji Zoo Café, then transition to Tenshiba Park lawn for toddler play.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">4:00 PM</span>
+          <span class="time-desc">
+            Early dinner at Sushiro Abeno (or Royal Host Abeno).<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Tenshiba+Park&destination=Sushiro+Abeno&travelmode=walking" target="_blank">🚶 Tenshiba Lawn → Sushiro Abeno</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">
+            Walk 8 mins back from Sushiro to Tennoji Station, Midosuji Line back to Daikokucho.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Sushiro+Abeno&destination=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&travelmode=transit" target="_blank">📍 Sushiro Abeno → Daikokucho Airbnb</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 4 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day4-color);">
+      <span>Day 4 • 5 Oct (Mon)</span>
+      <span>Nara Day Trip</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>1.</strong> Daikokucho → Namba (Midosuji Line, 2 min, ~¥190)</li>
+          <li><strong>2.</strong> Kintetsu Railway → Kintetsu-Nara (40–45 min, ~¥680)</li>
+          <li><strong>3.</strong> Taxi → Kasuga Taisha (5–10 min, ~¥1,000–1,500)</li>
+        </ul>
+        <div class="sub-heading">Plan & Tickets</div>
+        <ul class="info-list">
+          <li>Kasuga Taisha Shrine, Nara Park & feed deer</li>
+          <li>Todai-ji Great Buddha Hall</li>
+          <li>Lunch: Edogawa Naramachi | Nap window</li>
+          <li>Higashimuki Shopping Street, Nakatanidou Mochi, Coffee</li>
+          <li>Dinner: Sen-ryo Namba</li>
+          <li><strong>Tickets:</strong> Todai-ji: ¥800 | Kasuga Taisha Inner: ¥700</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Daikokucho → Namba. Walk to Osaka-Namba, board Kintetsu Line to Kintetsu-Nara.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Daikokucho+Station&destination=Kintetsu-Nara+Station&travelmode=transit" target="_blank">📍 Daikokucho → Kintetsu-Nara</a>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Kintetsu-Nara+Station&destination=Kasuga+Taisha&travelmode=transit" target="_blank">🚕 Station → Kasuga Taisha</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">1:00 PM</span>
+          <span class="time-desc">
+            Lunch at Edogawa Naramachi (12 min walk from Kasuga Taisha).<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Kasuga+Taisha&destination=Edogawa+Naramachi&travelmode=walking" target="_blank">🚶 Shrine → Edogawa Naramachi</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">2:00 PM</span>
+          <span class="time-desc">
+            Head to Higashimuki Shopping Street (6 min walk). Try fresh mochi at Nakatanidou.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Edogawa+Naramachi&destination=Higashimuki+Shopping+Street&travelmode=walking" target="_blank">🚶 Edogawa → Higashimuki St</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">4:30 PM</span>
+          <span class="time-desc">
+            Kintetsu-Nara to Osaka-Namba (Limited Express). Walk 5 mins to Namba Parks. Dinner at Sen-ryo.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Higashimuki+Shopping+Street&destination=Namba+Parks&travelmode=transit" target="_blank">📍 Nara → Sen-ryo (Namba Parks)</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">
+            Walk or take Midosuji line from Namba Parks back to Daikokucho Airbnb.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Namba+Parks&destination=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&travelmode=walking" target="_blank">🚶 Namba Parks → Daikokucho Airbnb</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 5 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day5-color);">
+      <span>Day 5 • 6 Oct (Tue)</span>
+      <span>Kaiyukan & Namba</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>Daikokucho → Hommachi → Osakako:</strong> Osaka Metro (25–30 min, ~¥290 / ~S$2.50)</li>
+        </ul>
+        <div class="sub-heading">Plan & Tickets</div>
+        <ul class="info-list">
+          <li>Kaiyukan Aquarium tour</li>
+          <li>Lunch: Tempozan Marketplace Food Court | Nap window</li>
+          <li>Tempozan Ferris Wheel (opt.) & Waterfront walk</li>
+          <li>Dinner: On The Square @ Takashimaya</li>
+          <li><strong>Tickets:</strong> Kaiyukan: ¥2,700–¥3,500 (Under 2: Free) | Ferris Wheel: ¥900</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Daikokucho (Yotsubashi line) → Hommachi → Osakako (Chuo line). Walk 5 mins.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Daikokucho+Station&destination=Osaka+Aquarium+Kaiyukan&travelmode=transit" target="_blank">📍 Daikokucho → Kaiyukan</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">1:00 PM</span>
+          <span class="time-desc">
+            Lunch at Tempozan Marketplace food court & optional giant Ferris Wheel ride.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Aquarium+Kaiyukan&destination=Tempozan+Giant+Ferris+Wheel&travelmode=walking" target="_blank">🚶 Kaiyukan ↔ Tempozan Wheel</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">4:00 PM</span>
+          <span class="time-desc">
+            Walk 10 min to Osakako → Hommachi (Chuo line) → Namba (Midosuji line). Walk 2 min into Namba Dining Maison. Dinner: On The Square.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Osakako+Station&destination=Takashimaya+Osaka&travelmode=transit" target="_blank">📍 Osakako → Takashimaya Namba</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">
+            Walk 10–12 min or take Midosuji 1 stop back to Daikokucho Airbnb.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Takashimaya+Osaka&destination=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&travelmode=walking" target="_blank">🚶 Takashimaya → Daikokucho Airbnb</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 6 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day6-color);">
+      <span>Day 6 • 7 Oct (Wed)</span>
+      <span>Ogimachi & Kids Plaza</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">Transport</div>
+        <ul class="info-list">
+          <li><strong>Daikokucho / Imamiya → Temma / Ogimachi:</strong> JR Osaka Loop or Subway (~20 min, ~¥170–240)</li>
+        </ul>
+        <div class="sub-heading">Plan & Tickets</div>
+        <ul class="info-list">
+          <li>Ogimachi Park & Kids Plaza Osaka</li>
+          <li>Lunch: LUCUA Dining Floor | Nap window</li>
+          <li>Grand Front Osaka & Umekita Park</li>
+          <li>Shopping: MUJI, Uniqlo, Pokémon Center, Nintendo Osaka</li>
+          <li>Dinner: Shabusai Umeda (Alt: Sushiro Umeda)</li>
+          <li><strong>Tickets:</strong> Kids Plaza: ¥1,400 | Under 2: Free</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Walk 7 mins to Imamiya Station → JR Loop Line to Temma. Walk 4 mins.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Kids+Plaza+Osaka&travelmode=transit" target="_blank">📍 Imamiya → Kids Plaza Osaka</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">1:00 PM</span>
+          <span class="time-desc">
+            Walk to Temma Station → JR Loop 1 stop to Osaka Station. Walk 5 mins into LUCUA Dining Floor (10F).<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Kids+Plaza+Osaka&destination=LUCUA+Osaka&travelmode=transit" target="_blank">📍 Kids Plaza → LUCUA Dining</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">5:00 PM</span>
+          <span class="time-desc">
+            Dinner at Shabusai Umeda (8 min walk from LUCUA).<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=LUCUA+Osaka&destination=Shabusai+Umeda&travelmode=walking" target="_blank">🚶 LUCUA → Shabusai Umeda</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">
+            Walk to Umeda Station → Midosuji Line direct back to Daikokucho.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=Shabusai+Umeda&destination=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&travelmode=transit" target="_blank">📍 Umeda Station → Daikokucho</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DAY 7 ================= -->
+  <div class="day-card">
+    <div class="card-header" style="background-color: var(--day7-color);">
+      <span>Day 7 • 8 Oct (Thu)</span>
+      <span>Split Day: USJ / Caretakers</span>
+    </div>
+    <div class="card-body">
+      <!-- Section 1: Image Content -->
+      <div class="split-section sec-1">
+        <div class="section-label">📸 Part 1: Infographic Overview</div>
+        <div class="sub-heading">YOU (W&G)</div>
+        <ul class="info-list">
+          <li>Universal Studios Japan (Full day)</li>
+        </ul>
+        <div class="sub-heading">FAMILY (CARETAKERS & TODDLER)</div>
+        <ul class="info-list">
+          <li>Daikoku Park Playground</li>
+          <li>Nap 1 at Airbnb</li>
+          <li>Lunch: Ichirindo @ Takashimaya Namba</li>
+          <li>Nap 2 at Airbnb</li>
+          <li>Afternoon: Namba Parks Rooftop Garden, Namba City, Shinsaibashi Shopping St</li>
+          <li>Dinner: Uobei Namba (Alt: Sen-ryo Namba)</li>
+        </ul>
+      </div>
+      <!-- Section 2: PDF Timeline & Links -->
+      <div class="split-section sec-2">
+        <div class="section-label">⏱️ Part 2: Timeline & Live Links</div>
+        <div class="sub-heading" style="color:#0056b3;">🎢 Track A: W&G (USJ)</div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 AM</span>
+          <span class="time-desc">
+            Walk to Imamiya → Nishikujo (Osaka Loop) → Universal-City (JR Yumesaki).<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Universal+Studios+Japan&travelmode=transit" target="_blank">📍 Airbnb → Universal Studios</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">8:00 PM</span>
+          <span class="time-desc">Head back from Universal City to Airbnb.</span>
+        </div>
+
+        <div class="sub-heading" style="color:#2e7d32; margin-top:8px;">👶 Track B: Parents & Toddler</div>
+        <div class="timeline-block">
+          <span class="time-stamp">9:00 AM</span>
+          <span class="time-desc">
+            Walk to Daikoku Park playground (3 min), then Nap 1 at Airbnb.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Daikoku+Park+Osaka&travelmode=walking" target="_blank">🚶 Airbnb ↔ Daikoku Park</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">12:00 PM</span>
+          <span class="time-desc">
+            Walk to Takashimaya Namba for lunch at <strong>Ichirindo</strong>.<br>
+            <a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&origin=2-chome-4-13+Daikoku+Naniwa+Ward+Osaka&destination=Takashimaya+Osaka&travelmode=transit" target="_blank">📍 Airbnb → Takashimaya</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">1:00 PM</span>
+          <span class="time-desc">Stroll to Namba Parks Rooftop Canyon Garden.</span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">2:00 PM</span>
+          <span class="time-desc">
+            Walk to Shinsaibashi Shopping St.<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Namba+Parks&destination=Shinsaibashi-suji&travelmode=walking" target="_blank">🚶 Namba Parks → Shinsaibashi</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">5:00 PM</span>
+          <span class="time-desc">
+            Dinner at Sen-ryo Namba Parks or Uobei Namba (14 min walk from Shinsaibashi).<br>
+            <a class="nav-btn walking" href="https://www.google.com/maps/dir/?api=1&origin=Shinsaibashi-suji&destination=Uobei+Namba&travelmode=walking" target="_blank">🚶 Shinsaibashi → Uobei Namba</a>
+          </span>
+        </div>
+        <div class="timeline-block">
+          <span class="time-stamp">7:00 PM</span>
+          <span class="time-desc">Walk or take subway back to Daikokucho Airbnb.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER EXTRAS: RESTAURANTS & ESSENTIAL TIPS -->
+<div class="footer-tables">
+  <div class="info-panel">
+    <h3>🍽️ Family-Friendly Restaurants (High Chairs Available ✅)</h3>
+    <ul class="info-list" style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+      <li><strong>Sen-ryo:</strong> Namba Parks</li>
+      <li><strong>Uobei:</strong> Namba</li>
+      <li><strong>Ichirindo:</strong> Takashimaya Namba</li>
+      <li><strong>Harvest Hill:</strong> Food Court</li>
+      <li><strong>Tennoji Zoo:</strong> Zoo Café & Tenshiba</li>
+      <li><strong>Sushiro:</strong> Abeno, Shikitsuhigashi & Umeda</li>
+      <li><strong>Royal Host:</strong> Abeno</li>
+      <li><strong>Tempozan:</strong> Marketplace Food Court</li>
+      <li><strong>On The Square:</strong> Takashimaya</li>
+      <li><strong>LUCUA:</strong> Dining Floor (10F)</li>
+      <li><strong>Shabusai:</strong> Umeda</li>
+      <li><strong>Edogawa:</strong> Naramachi (Nara)</li>
+    </ul>
+  </div>
+
+  <div class="info-panel">
+    <h3>💡 Practicalities & Emergency</h3>
+    <ul class="info-list">
+      <li><strong>ICOCA Card:</strong> Use on all subways, JR loops, private rails & convenience stores.</li>
+      <li><strong>Baby Facilities:</strong> Nursing rooms & diaper tables are located in all major department stores (Takashimaya, LUCUA).</li>
+      <li><strong>Emergency Dial:</strong> <strong>119</strong> (Ambulance/Fire, English support) | <strong>110</strong> (Police)</li>
+    </ul>
+  </div>
+</div>
+
 </body>
 </html>
